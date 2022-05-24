@@ -1,6 +1,6 @@
 {
     "name": "danielwinning/request",
-    "description": "A basic Request class.",
+    "description": "A basic request class.",
     "type": "library",
     "license": "MIT",
     "autoload": {

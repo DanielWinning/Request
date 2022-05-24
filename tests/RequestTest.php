@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use Danielwinning\Request\Request;
+use DanielWinning\Request\Request;
 
 final class RequestTest extends TestCase {
     public function setUp(): void
@@ -35,9 +35,9 @@ final class RequestTest extends TestCase {
     public function testDoesRequestMethodReturnMethod()
     {
         $_SERVER["REQUEST_METHOD"] = "GET";
-        $this->assertEquals("GET", Request::method(), "Request::method() should return method");
+        $this->assertEquals("GET", Request::method(), "Request::method() should return GET");
         $_SERVER["REQUEST_METHOD"] = "POST";
-        $this->assertEquals("POST", Request::method(), "Request::method() should return method");
+        $this->assertEquals("POST", Request::method(), "Request::method() should return POST");
     }
 
     /**
