@@ -137,4 +137,12 @@ final class RequestTest extends TestCase {
         $_SERVER["REQUEST_URI"] = "/blog/posts";
         $this->assertEquals([], Request::get(), "Request::get() should return array");
     }
+
+    public function testDoesRequestGetReturnArrayWhenNoKeyIsSpecifiedAndPostDataExistsAndMethodIsPost()
+    {
+        $_SERVER["REQUEST_METHOD"] = "POST";
+        $_POST["page"] = "2";
+        $_POST["sort"] = "desc";
+        $this->assertEquals(["page" => "2", "sort" => "desc"], Request::get(), "Request::get() should return array");
+    }
 }
