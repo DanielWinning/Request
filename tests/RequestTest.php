@@ -79,6 +79,13 @@ final class RequestTest extends TestCase {
         $this->assertFalse(Request::has("page"), "Request::has() should return false");
     }
 
+    public function testDoesRequestHasReturnFalseWhenNoArgumentIsEntered()
+    {
+        $_SERVER["REQUEST_METHOD"] = "GET";
+        $_SERVER["REQUEST_URI"] = "/blog/posts?page=2";
+        $this->assertFalse(Request::has(), "Request::has() should return false");
+    }
+
     /**
      * Request::get()
      */
@@ -115,5 +122,19 @@ final class RequestTest extends TestCase {
         $_SERVER["REQUEST_METHOD"] = "POST";
         $_POST["page"] = "2";
         $this->assertNull(Request::get("page2"), "Request::get() should return null");
+    }
+
+    public function testDoesRequestGetReturnArrayWhenNoKeyIsSpecifiedAndQueryStringExists()
+    {
+        $_SERVER["REQUEST_METHOD"] = "GET";
+        $_SERVER["REQUEST_URI"] = "/blog/posts?page=2&sort=desc";
+        $this->assertEquals(["page" => "2", "sort" => "desc"], Request::get(), "Request::get() should return array");
+    }
+
+    public function testDoesRequestGetReturnArrayWhenNoKeyIsSpecifiedAndQueryStringDoesNotExist()
+    {
+        $_SERVER["REQUEST_METHOD"] = "GET";
+        $_SERVER["REQUEST_URI"] = "/blog/posts";
+        $this->assertEquals([], Request::get(), "Request::get() should return array");
     }
 }
