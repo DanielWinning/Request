@@ -15,8 +15,8 @@ use \DanielWinning\Request\Request;
 
 **`Request::hasQueryString()`** returns true if the current request has a query string attached.
 
-**`Request::has()`** returns true if the current request has the specified query string parameter, or if the `$_POST` 
-array has the specified key.
+**`Request::has(string $key = null)`** returns true if the current request has the specified query string parameter, or 
+if the `$_POST` array has the specified key depending on the request method.
 
 **`Request::get(string $key = null)`** returns the value of the specified query string parameter, or the value of the 
 specified `$_POST` array key, depending on the current request method. If `$key` is not specified, the entire query 
